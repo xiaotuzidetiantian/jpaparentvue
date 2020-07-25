@@ -1,0 +1,37 @@
+<template>
+	<div>
+<el-table :data="tableData" style="width: 100%">
+
+			<el-table-column prop="id" label="编号" width="180">
+			</el-table-column>
+			<el-table-column prop="username" label="用户名" width="200">
+			</el-table-column>
+			<el-table-column prop="name" label="姓名" width="230">
+			</el-table-column>
+		</el-table>
+	</div>
+</template>
+
+<script>
+	export default {
+			data() {
+				return {
+					tableData: []
+				}
+			},
+			methods: {
+				initData() {
+					this.axios.get("http://localhost:8101/ulist").then((response) => {
+						this.tableData = response.data;
+					})
+				}
+			},
+			created() {
+				this.initData();
+			}
+		}
+</script>
+
+<style scoped>
+
+</style>
